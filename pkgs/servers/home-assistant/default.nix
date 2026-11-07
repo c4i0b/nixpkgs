@@ -125,22 +125,6 @@ let
         ];
       });
 
-      respx = super.respx.overridePythonAttrs (oldAttrs : {
-        patches = oldAttrs.patches or [ ] ++ [
-          # prerequisite for the next patch
-          (fetchpatch {
-            url = "https://github.com/lundberg/respx/commit/06091fa7a48a4bbd9c060b16e5d82b0f4f20929c.patch";
-            hash = "sha256-lcZSuoJ7CmVJAklfg6wyjQbmz3mAcSqmk7isGqZcswY=";
-          })
-          # https://github.com/lundberg/respx/pull/317
-          ./respx-httpx2-support.patch
-        ];
-
-        nativeCheckInputs = oldAttrs.nativeCheckInputs ++ [
-          self.httpx2
-        ];
-      });
-
       serialx = super.serialx.overridePythonAttrs (oldAttrs: {
         # many components use the serialx[esphome] implicitly
         dependencies = oldAttrs.dependencies or [ ] ++ oldAttrs.optional-dependencies.esphome;
