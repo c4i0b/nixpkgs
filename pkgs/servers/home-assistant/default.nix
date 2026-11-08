@@ -69,6 +69,7 @@ let
           oldAttrs.dependencies
           ++ (with self; [
             opentelemetry-api
+            opentelemetry-sdk
           ]);
       });
 
